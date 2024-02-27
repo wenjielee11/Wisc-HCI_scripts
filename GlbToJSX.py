@@ -22,7 +22,7 @@ def convert_glb_to_jsx(folder_path, output_path):
             full_file_path = os.path.join(folder_path, file)
             output_file_path = os.path.join(output_path,os.path.splitext(file)[0] + ".jsx")
             # Construct the command to be executed
-            command = f"npx gltfjsx {full_file_path} -o {output_file_path} -I"
+            command = f"npx gltfjsx {full_file_path} -o {output_file_path}"
             print(f"Converting {file}...")
             try:
                 # Execute the command
