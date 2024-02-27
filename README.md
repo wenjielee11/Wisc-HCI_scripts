@@ -85,7 +85,7 @@ python JSXToJS.py input_dir output_dir [options]
 - `output_dir` is the directory where you want the converted .js files to be saved.
 
 ### Options
-- `--scale`: Specifies the scale of the model in the format `[x,y,z]`. For example, `--scale "[1,1,1]`.
+- `--scale`: Specifies the scale of the model in the format `[x,y,z]`. For example, `--scale [1,1,1]`.
 - `--rotation`: Specifies the rotation of the model in the format `[x,y,z]`, where each component is an angle in radians. For example, `--rotation [0,0,0]`.
 - *Note* : If you do not specify these flags, the script ignores them, and the parameters wont be added. to the JS code.
 
