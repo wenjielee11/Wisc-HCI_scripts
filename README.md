@@ -14,7 +14,7 @@ This script converts all STL files found in a specified directory (and its subdi
 To run this script, you will need to use Blender's command-line interface. The general command format is as follows:
 
 ```bash
-blender --background --python GlbToJSX.py -- [base_search_dir] [base_output_dir]
+blender --background --python StlToGlb.py -- [base_search_dir] [base_output_dir]
 ```
 - `blender` is the command to run Blender.
 - `--background` tells Blender to run without its GUI.
