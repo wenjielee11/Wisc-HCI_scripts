@@ -50,7 +50,7 @@ def scan_and_generate_imports(directory, urdf_file):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: script.py <directory> <urdf_file>")
+        print("Usage: script.py <base_directory containing collision and visual folders> <urdf_file>")
         sys.exit(1)
     
     directory = sys.argv[1]
