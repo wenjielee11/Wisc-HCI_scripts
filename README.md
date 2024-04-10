@@ -114,12 +114,17 @@ python JSXToJS.py ../collision_jsx ../models/collision --scale [1,1,1] --rotatio
 # mesh_lookup_populator.py : Populates a dictionary MeshLookup.js for robot-scene
 This script is designed to assist in automating the process of importing mesh files from a Universal Robot Description Format (URDF) file into a JavaScript project. It scans a specified directory for JavaScript (.js) mesh loader files, generates import statements for them, and creates a lookup table that maps mesh filenames found in the URDF file to their corresponding JavaScript imports. This facilitates the dynamic loading of mesh files in web applications or other JavaScript-based projects.
 
-This python script scans a urdf file for all entries of <mesh filename="..."> It then automatically writes the imports by appending the filename with .js, then puts the filename as a key and the resulting import as a value. For example, <mesh filename="package://p_grip_description/meshes/p_grip_2F/back_cover.STL"> results in 
-```js
+This python script scans a urdf file for all entries of <mesh filename="..."> It then automatically writes the imports by appending the filename with .js, then puts the filename as a key and the resulting import as a value. For example, 
+```
+<mesh filename="package://p_grip_description/meshes/p_grip_2F/back_cover.STL">
+```
+results in 
+```
 import back_cover from "./MeshLoaders/./Lio/visual/back_cover.js"
 const MeshLookupTable = {
  "package://p_grip_description/meshes/p_grip_2F/back_cover.STL": back_cover,
 }```
+
 ## Requirements
 - Python 3.x installed on your system.
 ### Basic Usage
