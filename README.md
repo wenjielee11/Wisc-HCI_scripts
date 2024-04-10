@@ -160,7 +160,7 @@ You will then find a file named MeshLookup.js at /project/MeshLookup.js
 This Python script is designed to convert the contents of a Universal Robot Description Format (URDF) file into a structured JSON format. It specifically extracts joint and link information, including positions, rotations (expressed as quaternions), scales, and colors. The script handles URDF properties for dynamic value replacement and supports conversion from Euler angles to quaternions for rotation representation.
 ## Features:
 - Parses URDF files to extract joints and links information.
-- Handles dynamic replacement of values defined by <xacro:property> within the URDF.
+- Handles dynamic replacement of values defined by <xacro:property> within the URDF. Dynamically evaluates expressions within braces during runtime. Note that this might cause a security risk due to code injections, so make sure to only evaluate URDFs from trusted sources!
 - Converts rotations from Euler angles to quaternions.
 - Generates a JSON file containing structured information about the robot's configuration, suitable for use in simulations, visualizations, or further processing.
 ## Requirements:
