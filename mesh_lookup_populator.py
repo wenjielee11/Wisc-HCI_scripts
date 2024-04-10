@@ -2,26 +2,33 @@ import os
 import sys
 import xml.etree.ElementTree as ET
 
-def parse_urdf_for_meshes(urdf_file):
-    tree = ET.parse(urdf_file)
-    root = tree.getroot()
-    mesh_filenames = []
 
-    # Find all mesh filenames in the URDF file
-    for mesh in root.findall(".//mesh"):
-        filename_attr = mesh.get('filename')
-        if filename_attr:
-            mesh_filenames.append(filename_attr)
+def parse_urdf_for_meshes(parent_directory):
+    all_mesh_filenames = []
 
-    return mesh_filenames
+    # Walk through all directories within the given parent directory
+    for dir_root, dirs, files in os.walk(parent_directory):
+        for file in files:
+            if file.endswith('.urdf') or file.endswith('.xacro'):
+                urdf_file_path = os.path.join(dir_root, file)  # Use 'dir_root' for directory root
+                tree = ET.parse(urdf_file_path)
+                xml_root = tree.getroot()  # Use 'xml_root' for XML root element
 
-def scan_and_generate_imports(directory, urdf_file):
+                # Find all mesh filenames in the current URDF file
+                for mesh in xml_root.findall(".//mesh"):
+                    filename_attr = mesh.get('filename')
+                    if filename_attr:
+                        all_mesh_filenames.append(filename_attr)
+
+    return all_mesh_filenames
+
+def scan_and_generate_imports(directory, urdf_directory):
     subdirs = ["visual"] # removed collision for now
     imports = []
     mesh_lookup_dict = {}
 
     # Parse the URDF file to get mesh filenames
-    mesh_filenames = parse_urdf_for_meshes(urdf_file)
+    mesh_filenames = parse_urdf_for_meshes(urdf_directory)
 
     for subdir in subdirs:
         subdir_path = os.path.join(directory, subdir)
@@ -50,7 +57,7 @@ def scan_and_generate_imports(directory, urdf_file):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: script.py <base_directory containing collision and visual folders> <urdf_file>")
+        print("Usage: mesh_lookup_pupolator.py <base_directory containing collision and visual folders> <urdf_directory>")
         sys.exit(1)
     
     directory = sys.argv[1]
