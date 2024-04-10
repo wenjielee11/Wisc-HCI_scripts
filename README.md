@@ -123,7 +123,8 @@ results in
 import back_cover from "./MeshLoaders/./Lio/visual/back_cover.js"
 const MeshLookupTable = {
  "package://p_grip_description/meshes/p_grip_2F/back_cover.STL": back_cover,
-}```
+}
+```
 
 ## Requirements
 - Python 3.x installed on your system.
